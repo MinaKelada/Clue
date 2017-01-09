@@ -21,5 +21,10 @@ namespace Clue
             Form3 show = new Form3();
             show.ShowDialog();
         }
+        private void rename_Click(object sender, EventArgs e)
+        {
+            RenameForm r = new RenameForm();
+            r.ShowDialog();
+        }
     }
 }

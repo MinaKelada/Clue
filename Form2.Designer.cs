@@ -36,13 +36,20 @@ namespace Clue
             this.suspectLabel = new System.Windows.Forms.Label();
             this.objectLabel = new System.Windows.Forms.Label();
             this.showAll = new System.Windows.Forms.Button();
+            this.rename = new Button();
             this.SuspendLayout();
             //
             //showAll
             //
             this.showAll.Text = "Show All Known";
             this.showAll.Click += new System.EventHandler(this.showAll_Click);
-            this.showAll.AutoSize = true;
+            this.showAll.Size = new System.Drawing.Size(100, 25);
+            //
+            //Rename
+            //
+            this.rename.Text = "Rename";
+            this.rename.Click += new System.EventHandler(this.rename_Click);
+            this.rename.Size = this.showAll.Size;
             //
             // locationLabel
             //
@@ -78,6 +85,7 @@ namespace Clue
                 this.locationChecks[i].UseVisualStyleBackColor = true;
             }
             this.showAll.Location = new System.Drawing.Point(25, locationY + 20);
+            this.rename.Location = new System.Drawing.Point(225, locationY + 20);
             locationY = 44;
             for (int i = 0; i < Game.objectsArray.Length; i++)
             {
@@ -126,6 +134,7 @@ namespace Clue
             this.Controls.Add(this.suspectLabel);
             this.Controls.Add(this.objectLabel);
             this.Controls.Add(this.showAll);
+            this.Controls.Add(this.rename);
             this.Name = "Form2";
             this.Text = "Clue";
             this.ResumeLayout(false);
@@ -142,5 +151,6 @@ namespace Clue
         private System.Windows.Forms.Label objectLabel;
         private System.Windows.Forms.Label suspectLabel;
         private System.Windows.Forms.Button showAll;
+        private Button rename;
     }
 }

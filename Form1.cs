@@ -29,17 +29,7 @@ namespace Clue
             else
             {
                 warning.Visible = false;
-                Game.playerNumber = int.Parse(comboBox1.SelectedItem.ToString());
-                double total = Game.totalCardCount;
-                double number = Game.playerNumber;
-                Game.perPlayerCardCount = (int) Math.Floor(total / number);
-                Game.players.Add(new Player(textBox1.Text, Game.perPlayerCardCount));
-                for (int i = 1; i < Game.playerNumber; i++)
-                {
-                    string name = "Player ";
-                    name += i.ToString();
-                    Game.players.Add(new Player(name, Game.perPlayerCardCount));
-                }
+                Game.setInitialState(comboBox1.SelectedItem.ToString(), textBox1.Text);
                 this.Close();
                 this.DialogResult = DialogResult.OK;
             }

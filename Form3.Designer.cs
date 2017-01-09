@@ -34,6 +34,7 @@ namespace Clue
             players = new Label[Game.playerNumber];
             int handedCards = Game.playerNumber * Game.perPlayerCardCount;
             cards = new Label[handedCards];
+            openCardsArray = new Label[Game.totalCardCount - handedCards];
             this.SuspendLayout();
             // 
             // Form3
@@ -43,7 +44,18 @@ namespace Clue
                 openCards.Visible = true;
                 openCards.Text = "Public Cards";
                 openCards.AutoSize = true;
-                openCards.Location = new System.Drawing.Point(44, (120 + (30 * Game.perPlayerCardCount+1)));
+                int locX = 44;
+                int locY = 120 + (30 * (Game.perPlayerCardCount + 2));
+                openCards.Location = new System.Drawing.Point(locX,locY);
+                locY += 30;
+                for (int i = 0; i < Game.totalCardCount - handedCards; i++)
+                {
+                    openCardsArray[i] = new Label();
+                    openCardsArray[i].Text = Game.openCards[i];
+                    openCardsArray[i].AutoSize = true;
+                    openCardsArray[i].Location = new System.Drawing.Point(locX, locY);
+                    locY += 30;
+                }
             }
             int locationX = 44;
             for (int i = 0; i < Game.playerNumber; i++)
@@ -78,14 +90,9 @@ namespace Clue
             this.ClientSize = new System.Drawing.Size(718, 526);
             this.Name = "Form3";
             this.Text = "All Known Cards";
-            foreach (Label p in players)
-            {
-               this.Controls.Add(p);
-            }
-            foreach (Label c in cards)
-            {
-                this.Controls.Add(c);
-            }
+            this.Controls.AddRange(players);
+            this.Controls.AddRange(cards);
+            this.Controls.AddRange(openCardsArray);
             this.Controls.Add(openCards);
             this.ResumeLayout(false);
 
@@ -103,5 +110,6 @@ namespace Clue
         private Label[] players;
         private Label[] cards;
         private Label openCards;
+        private Label[] openCardsArray;
     }
 }

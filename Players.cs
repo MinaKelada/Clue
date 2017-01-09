@@ -10,16 +10,22 @@ namespace Clue
     {
         int cardCount;
         public List<string> Cards;
+        public List<string> askLog;
+        public List<string> cannotHave;
         public string name;
         public Player()
         {
             Cards = new List<string>();
+            cannotHave = new List<string>();
+            askLog = new List<string>();
             cardCount = 0;
             name = "";
         }
         public Player(string n, int count)
         {
             Cards = new List<string>();
+            cannotHave = new List<string>();
+            askLog = new List<string>();
             cardCount = count;
             for (int i = 0; i < count; i++)
             {
