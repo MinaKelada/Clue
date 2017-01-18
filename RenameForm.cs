@@ -41,6 +41,7 @@ namespace Clue
                     if (newNames[i].Text != "" && !string.IsNullOrWhiteSpace(newNames[i].Text))
                     {
                         Game.players[i].name = newNames[i].Text;
+                        Game.raiseRename();
                     }
                 }
                 this.Close();

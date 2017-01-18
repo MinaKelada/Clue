@@ -14,6 +14,8 @@ namespace Clue
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            Game.renamed -= this.assignPlayerName.OnRename;
+            Game.Dispose();
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -36,7 +38,11 @@ namespace Clue
             this.suspectLabel = new System.Windows.Forms.Label();
             this.objectLabel = new System.Windows.Forms.Label();
             this.showAll = new System.Windows.Forms.Button();
+            this.assignButton = new Button();
+            this.assignCard = new ComboBox();
+            this.assignPlayerName = new ModdedComboBox();
             this.rename = new Button();
+            this.warning = new Label();
             this.SuspendLayout();
             //
             //showAll
@@ -112,6 +118,40 @@ namespace Clue
                 this.suspectChecks[i].Text = Game.suspectsArray[i];
                 this.suspectChecks[i].UseVisualStyleBackColor = true;
             }
+            //
+            //assignPlayerName
+            //
+            //this not showing up yet, work here
+            this.assignPlayerName.Size = this.showAll.Size;
+            this.assignPlayerName.Location = new System.Drawing.Point(this.showAll.Location.X, this.showAll.Location.Y + 40);
+            this.assignPlayerName.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.assignPlayerName.Items.AddRange(Game.getAllPlayerNames());
+            this.assignPlayerName.FormattingEnabled = true;
+            Game.renamed += this.assignPlayerName.OnRename;
+            this.assignPlayerName.SelectedIndex = 0;
+            //
+            //assignCard
+            //
+            //this not showing up yet, work here
+            this.assignCard.Size = this.showAll.Size;
+            this.assignCard.Location = new System.Drawing.Point(this.rename.Location.X, this.rename.Location.Y + 40);
+            this.assignCard.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.assignCard.Items.AddRange(Game.getAllCards());
+            this.assignCard.FormattingEnabled = true;
+            this.assignCard.SelectedIndex = 0;
+            //
+            //assignButton
+            //
+            this.assignButton.Size = this.showAll.Size;
+            this.assignButton.Location = new System.Drawing.Point(this.rename.Location.X + (this.rename.Location.X-this.showAll.Location.X), this.rename.Location.Y + 40);
+            this.assignButton.Text = "Assign";
+            this.assignButton.Click += assign_Click;
+            //
+            //warning
+            //
+            this.warning.Location = new System.Drawing.Point(this.showAll.Location.X, 400);
+            this.warning.Visible = false;
+            this.warning.AutoSize = true;
             // 
             // Form2
             // 
@@ -135,6 +175,10 @@ namespace Clue
             this.Controls.Add(this.objectLabel);
             this.Controls.Add(this.showAll);
             this.Controls.Add(this.rename);
+            this.Controls.Add(this.assignPlayerName);
+            this.Controls.Add(this.assignCard);
+            this.Controls.Add(this.assignButton);
+            this.Controls.Add(this.warning);
             this.Name = "Form2";
             this.Text = "Clue";
             this.ResumeLayout(false);
@@ -151,6 +195,10 @@ namespace Clue
         private System.Windows.Forms.Label objectLabel;
         private System.Windows.Forms.Label suspectLabel;
         private System.Windows.Forms.Button showAll;
+        private Label warning;
+        private Button assignButton;
+        private ComboBox assignCard;
+        private ModdedComboBox assignPlayerName;
         private Button rename;
     }
 }

@@ -26,5 +26,18 @@ namespace Clue
             RenameForm r = new RenameForm();
             r.ShowDialog();
         }
+        private void assign_Click(object sender, EventArgs e)
+        {
+            string i = Game.assignCard(assignCard.SelectedItem.ToString(), assignPlayerName.SelectedItem.ToString());
+            if(i != null)
+            {
+                warning.Text = i;
+                warning.Visible = true;
+            }
+            else
+            {
+                warning.Visible = false;
+            }
+        }
     }
 }

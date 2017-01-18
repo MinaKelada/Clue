@@ -81,6 +81,7 @@ namespace Clue
                 }
                 cards[i] = new Label();
                 cards[i].Text = Game.players[currentPlayer].Cards[currentCard];
+                currentCard++;
                 cards[i].Location = new System.Drawing.Point(locationX, locationY);
                 locationY += 30;
 

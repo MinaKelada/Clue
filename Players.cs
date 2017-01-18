@@ -12,12 +12,14 @@ namespace Clue
         public List<string> Cards;
         public List<string> askLog;
         public List<string> cannotHave;
+        public List<string> mightHave;
         public string name;
         public Player()
         {
             Cards = new List<string>();
             cannotHave = new List<string>();
             askLog = new List<string>();
+            mightHave = new List<string>();
             cardCount = 0;
             name = "";
         }
